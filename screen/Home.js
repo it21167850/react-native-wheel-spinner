@@ -19,6 +19,10 @@ const Home = ({ navigation }) => {
     navigation.navigate("Spinner");
   };
 
+  const handleSpinData = () => {
+    navigation.navigate("SpinData");
+  };
+
   const getStoredEmail = async () => {
     try {
       const logemail = await AsyncStorage.getItem("logemail");
@@ -135,9 +139,16 @@ const Home = ({ navigation }) => {
           Report
         </Button>
       )}
-      <Button mode="contained" onPress={handleOnSpin} style={styles.button}>
-        Spinner
-      </Button>
+      {logemail == "admin@gmail.com" && (
+        <Button mode="contained" onPress={handleSpinData} style={styles.button}>
+          Spin Data
+        </Button>
+      )}
+      {logemail != "admin@gmail.com" && (
+        <Button mode="contained" onPress={handleOnSpin} style={styles.button}>
+          Spinner
+        </Button>
+      )}
     </View>
   );
 };
@@ -151,11 +162,12 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "80%",
-    height: 40,
+    height: 50,
     marginBottom: 20,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 5,
+    borderRadius: 10,
+    backgroundColor: "#2A3F84",
   },
 });
 
